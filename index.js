@@ -9,6 +9,16 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3000;
 
+class Session {
+    ussd_proceed(message, _id, nextStep) {
+        return `CON ${message}`;
+    }
+
+    ussd_end(message) {
+        return `END ${message}`;
+    }
+}
+
 // Endpoint to handle USSD requests
 app.post('/ussd', async (req, res) => {
     const { sessionId, serviceCode, phoneNumber, text } = req.body;
